@@ -361,9 +361,9 @@ export default function LeoUnitedApp() {
                   onClick={() => setExpandedGame(isExpanded ? null : i)}
                   style={{
                     background: upcoming
-                      ? "rgba(37,99,235,0.12)"
+                      ? "rgba(37,99,235,0.25)"
                       : "rgba(255,255,255,0.02)",
-                    border: `1px solid ${upcoming ? "rgba(37,99,235,0.35)" : "rgba(255,255,255,0.04)"}`,
+                    border: `1px solid ${upcoming ? "rgba(96,165,250,0.5)" : "rgba(255,255,255,0.04)"}`,
                     borderRadius: 14,
                     marginTop: 8,
                     overflow: "hidden",
@@ -377,7 +377,7 @@ export default function LeoUnitedApp() {
                     {/* Date block */}
                     <div style={{
                       width: 48, height: 52, borderRadius: 10,
-                      background: upcoming ? "rgba(37,99,235,0.35)" : "rgba(255,255,255,0.04)",
+                      background: upcoming ? "rgba(37,99,235,0.5)" : "rgba(255,255,255,0.04)",
                       display: "flex", flexDirection: "column",
                       alignItems: "center", justifyContent: "center",
                       flexShrink: 0,
@@ -400,8 +400,8 @@ export default function LeoUnitedApp() {
                         <span style={{
                           fontSize: 10, fontWeight: 700,
                           padding: "2px 6px", borderRadius: 4,
-                          background: game.homeAway === "home" ? "rgba(234,179,8,0.2)" : "rgba(96,165,250,0.15)",
-                          color: game.homeAway === "home" ? "#facc15" : "#60a5fa",
+                          background: game.homeAway === "home" ? "rgba(234,179,8,0.35)" : "rgba(96,165,250,0.3)",
+                          color: game.homeAway === "home" ? "#fde047" : "#93c5fd",
                           textTransform: "uppercase", letterSpacing: 0.5,
                         }}>
                           {game.homeAway === "home" ? "HOME" : "AWAY"}
