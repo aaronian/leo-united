@@ -361,9 +361,9 @@ export default function LeoUnitedApp() {
                   onClick={() => setExpandedGame(isExpanded ? null : i)}
                   style={{
                     background: upcoming
-                      ? "rgba(255,255,255,0.04)"
+                      ? "rgba(37,99,235,0.12)"
                       : "rgba(255,255,255,0.02)",
-                    border: `1px solid ${upcoming ? "rgba(255,255,255,0.08)" : "rgba(255,255,255,0.04)"}`,
+                    border: `1px solid ${upcoming ? "rgba(37,99,235,0.35)" : "rgba(255,255,255,0.04)"}`,
                     borderRadius: 14,
                     marginTop: 8,
                     overflow: "hidden",
@@ -377,7 +377,7 @@ export default function LeoUnitedApp() {
                     {/* Date block */}
                     <div style={{
                       width: 48, height: 52, borderRadius: 10,
-                      background: upcoming ? "rgba(37,99,235,0.15)" : "rgba(255,255,255,0.04)",
+                      background: upcoming ? "rgba(37,99,235,0.35)" : "rgba(255,255,255,0.04)",
                       display: "flex", flexDirection: "column",
                       alignItems: "center", justifyContent: "center",
                       flexShrink: 0,
@@ -406,7 +406,7 @@ export default function LeoUnitedApp() {
                         }}>
                           {game.homeAway === "home" ? "HOME" : "AWAY"}
                         </span>
-                        <span style={{ fontSize: 12, color: "rgba(255,255,255,0.4)" }}>
+                        <span style={{ fontSize: 12, color: upcoming ? "rgba(255,255,255,0.7)" : "rgba(255,255,255,0.4)" }}>
                           {dateInfo.dayName} · {game.time}
                         </span>
                       </div>
@@ -417,7 +417,7 @@ export default function LeoUnitedApp() {
                         {game.homeAway === "home" ? "vs" : "@"} {game.opponent}
                       </div>
                       <div style={{
-                        fontSize: 12, color: "rgba(255,255,255,0.35)",
+                        fontSize: 12, color: upcoming ? "rgba(255,255,255,0.55)" : "rgba(255,255,255,0.35)",
                         whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
                         marginTop: 2,
                       }}>
