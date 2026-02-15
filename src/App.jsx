@@ -131,6 +131,25 @@ const SCHEDULE = [
   },
 ];
 
+// Standings data — sorted by pts (desc), then gd, then gf
+// Update these values as games are played
+const STANDINGS = [
+  { team: "Charlotte Celtic Legends", mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0 },
+  { team: "Charlotte Eclipse",        mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0 },
+  { team: "Day Ones FC",              mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0 },
+  { team: "Leo United",               mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0 },
+  { team: "QCU Sauce",                mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0 },
+  { team: "TBD Soccer Club",          mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0 },
+];
+
+function getStandingsRecord(teamName) {
+  return STANDINGS.find((s) => s.team === teamName);
+}
+
+function getSortedStandings() {
+  return [...STANDINGS].sort((a, b) => b.pts - a.pts || b.gd - a.gd || b.gf - a.gf);
+}
+
 function getGoogleMapsUrl(field) {
   return `https://www.google.com/maps/search/?api=1&query=${field.lat},${field.lng}`;
 }
@@ -186,6 +205,17 @@ const CalendarIcon = () => (
     <line x1="16" y1="2" x2="16" y2="6" />
     <line x1="8" y1="2" x2="8" y2="6" />
     <line x1="3" y1="10" x2="21" y2="10" />
+  </svg>
+);
+
+const TrophyIcon = () => (
+  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6" />
+    <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18" />
+    <path d="M4 22h16" />
+    <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22" />
+    <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22" />
+    <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z" />
   </svg>
 );
 
@@ -324,6 +354,7 @@ export default function LeoUnitedApp() {
         }}>
           {[
             { key: "schedule", label: "Schedule", icon: <CalendarIcon /> },
+            { key: "standings", label: "Standings", icon: <TrophyIcon /> },
             { key: "fields", label: "Fields", icon: <FieldsIcon /> },
           ].map((tab) => (
             <button
@@ -424,6 +455,17 @@ export default function LeoUnitedApp() {
                       }}>
                         {field.name} — {field.field}
                       </div>
+                      {(() => {
+                        const rec = getStandingsRecord(game.opponent);
+                        return rec ? (
+                          <div style={{
+                            fontSize: 11, color: upcoming ? "#94a3b8" : "#b0b8c4",
+                            marginTop: 3,
+                          }}>
+                            Record: {rec.w}W - {rec.d}D - {rec.l}L ({rec.pts} pts)
+                          </div>
+                        ) : null;
+                      })()}
                     </div>
 
                     {/* Expand arrow */}
@@ -486,6 +528,99 @@ export default function LeoUnitedApp() {
                 </div>
               );
             })}
+          </div>
+        )}
+
+        {activeTab === "standings" && (
+          <div>
+            <div style={{
+              background: "#ffffff",
+              border: "1px solid #e0e4eb",
+              borderRadius: 14,
+              marginTop: 8,
+              overflow: "hidden",
+              opacity: loaded ? 1 : 0,
+              transform: loaded ? "translateY(0)" : "translateY(15px)",
+              transition: "all 0.5s 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
+            }}>
+              <div style={{
+                padding: "14px 16px 10px",
+                borderBottom: "1px solid #e0e4eb",
+              }}>
+                <h3 style={{ margin: 0, fontSize: 15, fontWeight: 700, color: "#1e293b" }}>
+                  Spring 2026 — Coed Fifth Division
+                </h3>
+              </div>
+              <div style={{ overflowX: "auto" }}>
+                <table style={{
+                  width: "100%",
+                  borderCollapse: "collapse",
+                  fontSize: 13,
+                }}>
+                  <thead>
+                    <tr style={{ borderBottom: "2px solid #e0e4eb" }}>
+                      {["#", "Team", "MP", "W", "D", "L", "GF", "GA", "GD", "Pts"].map((col) => (
+                        <th key={col} style={{
+                          padding: "8px 6px",
+                          textAlign: col === "Team" ? "left" : "center",
+                          fontSize: 11,
+                          fontWeight: 700,
+                          color: "#64748b",
+                          textTransform: "uppercase",
+                          letterSpacing: 0.5,
+                          whiteSpace: "nowrap",
+                        }}>{col}</th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {getSortedStandings().map((row, i) => {
+                      const isLeo = row.team === "Leo United";
+                      return (
+                        <tr key={row.team} style={{
+                          background: isLeo ? "#eff6ff" : (i % 2 === 0 ? "#fff" : "#f8fafc"),
+                          borderBottom: "1px solid #f1f5f9",
+                          fontWeight: isLeo ? 700 : 400,
+                        }}>
+                          <td style={{ padding: "10px 6px", textAlign: "center", color: "#64748b", fontSize: 12 }}>{i + 1}</td>
+                          <td style={{
+                            padding: "10px 6px", textAlign: "left", color: "#1e293b",
+                            whiteSpace: "nowrap",
+                            borderLeft: isLeo ? "3px solid #2563eb" : "3px solid transparent",
+                          }}>
+                            {row.team}
+                          </td>
+                          <td style={{ padding: "10px 6px", textAlign: "center", color: "#475569" }}>{row.mp}</td>
+                          <td style={{ padding: "10px 6px", textAlign: "center", color: "#16a34a", fontWeight: 600 }}>{row.w}</td>
+                          <td style={{ padding: "10px 6px", textAlign: "center", color: "#94a3b8" }}>{row.d}</td>
+                          <td style={{ padding: "10px 6px", textAlign: "center", color: "#dc2626", fontWeight: 600 }}>{row.l}</td>
+                          <td style={{ padding: "10px 6px", textAlign: "center", color: "#475569" }}>{row.gf}</td>
+                          <td style={{ padding: "10px 6px", textAlign: "center", color: "#475569" }}>{row.ga}</td>
+                          <td style={{ padding: "10px 6px", textAlign: "center", color: row.gd > 0 ? "#16a34a" : row.gd < 0 ? "#dc2626" : "#94a3b8", fontWeight: 600 }}>
+                            {row.gd > 0 ? `+${row.gd}` : row.gd}
+                          </td>
+                          <td style={{ padding: "10px 6px", textAlign: "center", color: "#1e293b", fontWeight: 700, fontSize: 14 }}>{row.pts}</td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div style={{
+              textAlign: "center", marginTop: 12,
+              opacity: loaded ? 1 : 0,
+              transition: "opacity 0.5s 0.5s",
+            }}>
+              <a
+                href="https://app.teampass.com/Metrolina_Adult_Soccer_League/Standings/"
+                target="_blank"
+                rel="noopener noreferrer"
+                style={{ fontSize: 11, color: "rgba(255,255,255,0.4)", textDecoration: "none" }}
+              >
+                View official standings on TeamPass
+              </a>
+            </div>
           </div>
         )}
 
