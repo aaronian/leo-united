@@ -484,7 +484,7 @@ export default function LeoUnitedApp() {
                           onClick={(e) => e.stopPropagation()}
                           style={{
                             display: "inline-flex", alignItems: "center", gap: 6,
-                            background: "rgba(234,179,8,0.12)", color: "#facc15",
+                            background: "#eab308", color: "#fff",
                             padding: "8px 14px", borderRadius: 8,
                             fontSize: 12, fontWeight: 600,
                             textDecoration: "none",
