@@ -209,7 +209,7 @@ export default function LeoUnitedApp() {
   return (
     <div style={{
       minHeight: "100vh",
-      background: "#0a0f1a",
+      background: "#0d1526",
       fontFamily: "'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif",
       color: "#e8eaf0",
       position: "relative",
@@ -264,8 +264,8 @@ export default function LeoUnitedApp() {
           transition: "all 0.6s 0.15s cubic-bezier(0.16, 1, 0.3, 1)",
         }}>
           <div style={{
-            background: "linear-gradient(135deg, rgba(37,99,235,0.15), rgba(234,179,8,0.08))",
-            border: "1px solid rgba(37,99,235,0.25)",
+            background: "linear-gradient(135deg, rgba(37,99,235,0.25), rgba(234,179,8,0.12))",
+            border: "1px solid rgba(37,99,235,0.4)",
             borderRadius: 16, padding: "14px 16px",
             display: "flex", alignItems: "center", gap: 14,
           }}>
@@ -361,14 +361,14 @@ export default function LeoUnitedApp() {
                   onClick={() => setExpandedGame(isExpanded ? null : i)}
                   style={{
                     background: upcoming
-                      ? "rgba(37,99,235,0.25)"
-                      : "rgba(255,255,255,0.02)",
-                    border: `1px solid ${upcoming ? "rgba(96,165,250,0.5)" : "rgba(255,255,255,0.04)"}`,
+                      ? "rgba(37,99,235,0.4)"
+                      : "rgba(255,255,255,0.07)",
+                    border: `1px solid ${upcoming ? "rgba(96,165,250,0.6)" : "rgba(255,255,255,0.1)"}`,
                     borderRadius: 14,
                     marginTop: 8,
                     overflow: "hidden",
                     cursor: "pointer",
-                    opacity: loaded ? (upcoming ? 1 : 0.5) : 0,
+                    opacity: loaded ? (upcoming ? 1 : 0.7) : 0,
                     transform: loaded ? "translateY(0)" : "translateY(15px)",
                     transition: `all 0.5s ${0.05 * i + 0.3}s cubic-bezier(0.16, 1, 0.3, 1)`,
                   }}
@@ -377,19 +377,19 @@ export default function LeoUnitedApp() {
                     {/* Date block */}
                     <div style={{
                       width: 48, height: 52, borderRadius: 10,
-                      background: upcoming ? "rgba(37,99,235,0.5)" : "rgba(255,255,255,0.04)",
+                      background: upcoming ? "rgba(37,99,235,0.65)" : "rgba(255,255,255,0.08)",
                       display: "flex", flexDirection: "column",
                       alignItems: "center", justifyContent: "center",
                       flexShrink: 0,
                     }}>
                       <span style={{
                         fontSize: 10, fontWeight: 700, textTransform: "uppercase",
-                        color: upcoming ? "#eab308" : "rgba(255,255,255,0.3)",
+                        color: upcoming ? "#facc15" : "rgba(255,255,255,0.5)",
                         letterSpacing: 0.5,
                       }}>{dateInfo.month}</span>
                       <span style={{
                         fontSize: 20, fontWeight: 800,
-                        color: upcoming ? "#fff" : "rgba(255,255,255,0.3)",
+                        color: upcoming ? "#fff" : "rgba(255,255,255,0.5)",
                         lineHeight: 1.1,
                       }}>{dateInfo.day}</span>
                     </div>
@@ -400,24 +400,24 @@ export default function LeoUnitedApp() {
                         <span style={{
                           fontSize: 10, fontWeight: 700,
                           padding: "2px 6px", borderRadius: 4,
-                          background: game.homeAway === "home" ? "rgba(234,179,8,0.35)" : "rgba(96,165,250,0.3)",
-                          color: game.homeAway === "home" ? "#fde047" : "#93c5fd",
+                          background: game.homeAway === "home" ? "rgba(234,179,8,0.45)" : "rgba(96,165,250,0.4)",
+                          color: game.homeAway === "home" ? "#fef08a" : "#bfdbfe",
                           textTransform: "uppercase", letterSpacing: 0.5,
                         }}>
                           {game.homeAway === "home" ? "HOME" : "AWAY"}
                         </span>
-                        <span style={{ fontSize: 12, color: upcoming ? "rgba(255,255,255,0.7)" : "rgba(255,255,255,0.4)" }}>
+                        <span style={{ fontSize: 12, color: upcoming ? "rgba(255,255,255,0.85)" : "rgba(255,255,255,0.55)" }}>
                           {dateInfo.dayName} · {game.time}
                         </span>
                       </div>
                       <div style={{
-                        fontSize: 15, fontWeight: 600, color: upcoming ? "#fff" : "rgba(255,255,255,0.5)",
+                        fontSize: 15, fontWeight: 600, color: upcoming ? "#fff" : "rgba(255,255,255,0.7)",
                         whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
                       }}>
                         {game.homeAway === "home" ? "vs" : "@"} {game.opponent}
                       </div>
                       <div style={{
-                        fontSize: 12, color: upcoming ? "rgba(255,255,255,0.55)" : "rgba(255,255,255,0.35)",
+                        fontSize: 12, color: upcoming ? "rgba(255,255,255,0.7)" : "rgba(255,255,255,0.5)",
                         whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
                         marginTop: 2,
                       }}>
@@ -427,7 +427,7 @@ export default function LeoUnitedApp() {
 
                     {/* Expand arrow */}
                     <div style={{
-                      fontSize: 18, color: "rgba(255,255,255,0.2)",
+                      fontSize: 18, color: "rgba(255,255,255,0.4)",
                       transform: isExpanded ? "rotate(180deg)" : "rotate(0deg)",
                       transition: "transform 0.2s",
                       flexShrink: 0,
@@ -612,7 +612,7 @@ export default function LeoUnitedApp() {
       {/* Footer link */}
       <div style={{
         position: "fixed", bottom: 0, left: 0, right: 0,
-        background: "linear-gradient(transparent, #0a0f1a 40%)",
+        background: "linear-gradient(transparent, #0d1526 40%)",
         padding: "40px 16px 16px",
         textAlign: "center",
       }}>
