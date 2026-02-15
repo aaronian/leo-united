@@ -140,7 +140,9 @@ function getGoogleMapsDirectionsUrl(field) {
 }
 
 function formatDate(dateStr) {
-  const d = new Date(dateStr + "T12:00:00");
+  // Split and construct manually to avoid timezone parsing issues
+  const [y, m, day] = dateStr.split("-").map(Number);
+  const d = new Date(y, m - 1, day);
   const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
   const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   return {
@@ -152,7 +154,8 @@ function formatDate(dateStr) {
 }
 
 function isUpcoming(dateStr) {
-  const gameDate = new Date(dateStr + "T23:59:59");
+  const [y, m, day] = dateStr.split("-").map(Number);
+  const gameDate = new Date(y, m - 1, day, 23, 59, 59);
   return gameDate >= new Date();
 }
 
