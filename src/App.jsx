@@ -462,22 +462,7 @@ export default function LeoUnitedApp() {
                         >
                           <NavigationIcon /> Get Directions
                         </a>
-                        <a
-                          href={getGoogleMapsUrl(field)}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          onClick={(e) => e.stopPropagation()}
-                          style={{
-                            display: "inline-flex", alignItems: "center", gap: 6,
-                            background: "rgba(37,99,235,0.15)", color: "#93c5fd",
-                            padding: "8px 14px", borderRadius: 8,
-                            fontSize: 12, fontWeight: 600,
-                            textDecoration: "none",
-                          }}
-                        >
-                          <MapPinIcon /> View Map
-                        </a>
-                        <a
+<a
                           href={game.link}
                           target="_blank"
                           rel="noopener noreferrer"
