@@ -360,15 +360,13 @@ export default function LeoUnitedApp() {
                   key={i}
                   onClick={() => setExpandedGame(isExpanded ? null : i)}
                   style={{
-                    background: upcoming
-                      ? "rgba(37,99,235,0.4)"
-                      : "rgba(255,255,255,0.07)",
-                    border: `1px solid ${upcoming ? "rgba(96,165,250,0.6)" : "rgba(255,255,255,0.1)"}`,
+                    background: upcoming ? "#ffffff" : "#e8eaf0",
+                    border: `1px solid ${upcoming ? "#e0e4eb" : "#d0d4db"}`,
                     borderRadius: 14,
                     marginTop: 8,
                     overflow: "hidden",
                     cursor: "pointer",
-                    opacity: loaded ? (upcoming ? 1 : 0.7) : 0,
+                    opacity: loaded ? 1 : 0,
                     transform: loaded ? "translateY(0)" : "translateY(15px)",
                     transition: `all 0.5s ${0.05 * i + 0.3}s cubic-bezier(0.16, 1, 0.3, 1)`,
                   }}
@@ -377,19 +375,19 @@ export default function LeoUnitedApp() {
                     {/* Date block */}
                     <div style={{
                       width: 48, height: 52, borderRadius: 10,
-                      background: upcoming ? "rgba(37,99,235,0.65)" : "rgba(255,255,255,0.08)",
+                      background: upcoming ? "#2563eb" : "#94a3b8",
                       display: "flex", flexDirection: "column",
                       alignItems: "center", justifyContent: "center",
                       flexShrink: 0,
                     }}>
                       <span style={{
                         fontSize: 10, fontWeight: 700, textTransform: "uppercase",
-                        color: upcoming ? "#facc15" : "rgba(255,255,255,0.5)",
+                        color: "#fff",
                         letterSpacing: 0.5,
                       }}>{dateInfo.month}</span>
                       <span style={{
                         fontSize: 20, fontWeight: 800,
-                        color: upcoming ? "#fff" : "rgba(255,255,255,0.5)",
+                        color: "#fff",
                         lineHeight: 1.1,
                       }}>{dateInfo.day}</span>
                     </div>
@@ -400,24 +398,24 @@ export default function LeoUnitedApp() {
                         <span style={{
                           fontSize: 10, fontWeight: 700,
                           padding: "2px 6px", borderRadius: 4,
-                          background: game.homeAway === "home" ? "rgba(234,179,8,0.45)" : "rgba(96,165,250,0.4)",
-                          color: game.homeAway === "home" ? "#fef08a" : "#bfdbfe",
+                          background: game.homeAway === "home" ? "#eab308" : "#2563eb",
+                          color: "#fff",
                           textTransform: "uppercase", letterSpacing: 0.5,
                         }}>
                           {game.homeAway === "home" ? "HOME" : "AWAY"}
                         </span>
-                        <span style={{ fontSize: 12, color: upcoming ? "rgba(255,255,255,0.85)" : "rgba(255,255,255,0.55)" }}>
+                        <span style={{ fontSize: 12, color: upcoming ? "#64748b" : "#94a3b8" }}>
                           {dateInfo.dayName} · {game.time}
                         </span>
                       </div>
                       <div style={{
-                        fontSize: 15, fontWeight: 600, color: upcoming ? "#fff" : "rgba(255,255,255,0.7)",
+                        fontSize: 15, fontWeight: 600, color: upcoming ? "#1e293b" : "#64748b",
                         whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
                       }}>
                         {game.homeAway === "home" ? "vs" : "@"} {game.opponent}
                       </div>
                       <div style={{
-                        fontSize: 12, color: upcoming ? "rgba(255,255,255,0.7)" : "rgba(255,255,255,0.5)",
+                        fontSize: 12, color: upcoming ? "#64748b" : "#94a3b8",
                         whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis",
                         marginTop: 2,
                       }}>
@@ -427,7 +425,7 @@ export default function LeoUnitedApp() {
 
                     {/* Expand arrow */}
                     <div style={{
-                      fontSize: 18, color: "rgba(255,255,255,0.4)",
+                      fontSize: 18, color: "#94a3b8",
                       transform: isExpanded ? "rotate(180deg)" : "rotate(0deg)",
                       transition: "transform 0.2s",
                       flexShrink: 0,
@@ -438,14 +436,14 @@ export default function LeoUnitedApp() {
                   {isExpanded && (
                     <div style={{
                       padding: "0 16px 14px",
-                      borderTop: "1px solid rgba(255,255,255,0.06)",
+                      borderTop: "1px solid #e0e4eb",
                       paddingTop: 12,
                     }}>
-                      <div style={{ display: "flex", alignItems: "flex-start", gap: 8, marginBottom: 10 }}>
+                      <div style={{ display: "flex", alignItems: "flex-start", gap: 8, marginBottom: 10, color: "#475569" }}>
                         <MapPinIcon />
                         <div>
-                          <div style={{ fontSize: 13, fontWeight: 600, color: "#fff" }}>{field.name}</div>
-                          <div style={{ fontSize: 12, color: "rgba(255,255,255,0.4)" }}>{field.address}</div>
+                          <div style={{ fontSize: 13, fontWeight: 600, color: "#1e293b" }}>{field.name}</div>
+                          <div style={{ fontSize: 12, color: "#64748b" }}>{field.address}</div>
                         </div>
                       </div>
                       <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
