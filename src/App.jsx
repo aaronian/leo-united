@@ -229,6 +229,7 @@ const FieldsIcon = () => (
 export default function LeoUnitedApp() {
   const [activeTab, setActiveTab] = useState("schedule");
   const [expandedGame, setExpandedGame] = useState(null);
+  const [selectedTeam, setSelectedTeam] = useState(null);
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
@@ -357,7 +358,7 @@ export default function LeoUnitedApp() {
           ].map((tab) => (
             <button
               key={tab.key}
-              onClick={() => setActiveTab(tab.key)}
+              onClick={() => { setActiveTab(tab.key); setSelectedTeam(null); }}
               style={{
                 flex: 1,
                 display: "flex", alignItems: "center", justifyContent: "center", gap: 8,
@@ -582,7 +583,7 @@ export default function LeoUnitedApp() {
           </div>
         )}
 
-        {activeTab === "standings" && (
+        {activeTab === "standings" && !selectedTeam && (
           <div>
             <div style={{
               background: "#ffffff",
@@ -628,16 +629,24 @@ export default function LeoUnitedApp() {
                     {getSortedStandings().map((row, i) => {
                       const isLeo = row.team === "Leo United";
                       return (
-                        <tr key={row.team} style={{
-                          background: isLeo ? "#eff6ff" : (i % 2 === 0 ? "#fff" : "#f8fafc"),
-                          borderBottom: "1px solid #f1f5f9",
-                          fontWeight: isLeo ? 700 : 400,
-                        }}>
+                        <tr
+                          key={row.team}
+                          onClick={() => setSelectedTeam(row.team)}
+                          style={{
+                            background: isLeo ? "#eff6ff" : (i % 2 === 0 ? "#fff" : "#f8fafc"),
+                            borderBottom: "1px solid #f1f5f9",
+                            fontWeight: isLeo ? 700 : 400,
+                            cursor: "pointer",
+                          }}
+                        >
                           <td style={{ padding: "10px 6px", textAlign: "center", color: "#64748b", fontSize: 12 }}>{i + 1}</td>
                           <td style={{
-                            padding: "10px 6px", textAlign: "left", color: "#1e293b",
+                            padding: "10px 6px", textAlign: "left", color: "#2563eb",
                             whiteSpace: "nowrap",
                             borderLeft: isLeo ? "3px solid #2563eb" : "3px solid transparent",
+                            textDecoration: "underline",
+                            textDecorationColor: "rgba(37,99,235,0.3)",
+                            textUnderlineOffset: 2,
                           }}>
                             {row.team}
                           </td>
@@ -677,6 +686,128 @@ export default function LeoUnitedApp() {
             </div>
           </div>
         )}
+
+        {/* Team Detail View */}
+        {activeTab === "standings" && selectedTeam && (() => {
+          const teamRecord = getStandingsRecord(selectedTeam);
+          const teamResults = getTeamResults(selectedTeam);
+          return (
+            <div>
+              {/* Back button */}
+              <button
+                onClick={() => setSelectedTeam(null)}
+                style={{
+                  display: "flex", alignItems: "center", gap: 6,
+                  background: "none", border: "none", cursor: "pointer",
+                  color: "#93c5fd", fontSize: 13, fontWeight: 600,
+                  padding: "8px 0", marginTop: 4,
+                }}
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="15 18 9 12 15 6" />
+                </svg>
+                Back to Standings
+              </button>
+
+              {/* Team header card */}
+              <div style={{
+                background: "#ffffff",
+                border: "1px solid #e0e4eb",
+                borderRadius: 14,
+                marginTop: 4,
+                padding: "16px",
+              }}>
+                <h3 style={{ margin: "0 0 10px", fontSize: 18, fontWeight: 700, color: "#1e293b" }}>
+                  {selectedTeam}
+                </h3>
+                {teamRecord && (
+                  <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
+                    {[
+                      { label: "MP", value: teamRecord.mp, color: "#475569" },
+                      { label: "W", value: teamRecord.w, color: "#16a34a" },
+                      { label: "D", value: teamRecord.d, color: "#94a3b8" },
+                      { label: "L", value: teamRecord.l, color: "#dc2626" },
+                      { label: "GF", value: teamRecord.gf, color: "#475569" },
+                      { label: "GA", value: teamRecord.ga, color: "#475569" },
+                      { label: "GD", value: teamRecord.gd > 0 ? `+${teamRecord.gd}` : teamRecord.gd, color: teamRecord.gd > 0 ? "#16a34a" : teamRecord.gd < 0 ? "#dc2626" : "#94a3b8" },
+                      { label: "Pts", value: teamRecord.pts, color: "#1e293b" },
+                    ].map((stat) => (
+                      <div key={stat.label} style={{ textAlign: "center", minWidth: 36 }}>
+                        <div style={{ fontSize: 10, fontWeight: 700, color: "#94a3b8", textTransform: "uppercase", letterSpacing: 0.5 }}>{stat.label}</div>
+                        <div style={{ fontSize: 18, fontWeight: 700, color: stat.color }}>{stat.value}</div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+
+              {/* Season results */}
+              <div style={{
+                background: "#ffffff",
+                border: "1px solid #e0e4eb",
+                borderRadius: 14,
+                marginTop: 8,
+                overflow: "hidden",
+              }}>
+                <div style={{
+                  padding: "12px 16px 8px",
+                  borderBottom: "1px solid #e0e4eb",
+                }}>
+                  <h4 style={{ margin: 0, fontSize: 14, fontWeight: 700, color: "#1e293b" }}>
+                    Season Results
+                  </h4>
+                </div>
+                {teamResults.length === 0 ? (
+                  <div style={{ padding: "20px 16px", textAlign: "center", color: "#94a3b8", fontSize: 13, fontStyle: "italic" }}>
+                    No results yet — season starts Feb 22
+                  </div>
+                ) : (
+                  <div>
+                    {teamResults.map((m, mi) => {
+                      const isHome = m.home === selectedTeam;
+                      const teamScore = isHome ? m.homeScore : m.awayScore;
+                      const oppScore = isHome ? m.awayScore : m.homeScore;
+                      const otherTeam = isHome ? m.away : m.home;
+                      const result = teamScore > oppScore ? "W" : teamScore < oppScore ? "L" : "D";
+                      const resultColor = result === "W" ? "#16a34a" : result === "L" ? "#dc2626" : "#eab308";
+                      const resultBg = result === "W" ? "#f0fdf4" : result === "L" ? "#fef2f2" : "#fefce8";
+                      const dateInfo = formatDate(m.date);
+                      return (
+                        <div key={mi} style={{
+                          display: "flex", alignItems: "center", gap: 10,
+                          padding: "10px 16px",
+                          borderTop: mi > 0 ? "1px solid #f1f5f9" : "none",
+                        }}>
+                          <span style={{
+                            fontWeight: 700, color: resultColor,
+                            background: resultBg,
+                            width: 28, height: 28, borderRadius: 6,
+                            display: "flex", alignItems: "center", justifyContent: "center",
+                            fontSize: 12, flexShrink: 0,
+                          }}>{result}</span>
+                          <div style={{ flex: 1, minWidth: 0 }}>
+                            <div style={{ fontSize: 14, fontWeight: 600, color: "#1e293b" }}>
+                              {isHome ? "vs" : "@"} {otherTeam}
+                            </div>
+                            <div style={{ fontSize: 12, color: "#64748b" }}>
+                              {dateInfo.full} · {isHome ? "Home" : "Away"}
+                            </div>
+                          </div>
+                          <div style={{
+                            fontSize: 16, fontWeight: 700, color: "#1e293b",
+                            whiteSpace: "nowrap",
+                          }}>
+                            {teamScore} - {oppScore}
+                          </div>
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
+              </div>
+            </div>
+          );
+        })()}
 
         {activeTab === "fields" && (
           <div>
