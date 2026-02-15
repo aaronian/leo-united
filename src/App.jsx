@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import standingsData from "./data/standings.json";
+import resultsData from "./data/results.json";
 
 const FIELDS = {
   "sw_clt_stem": {
@@ -131,23 +133,19 @@ const SCHEDULE = [
   },
 ];
 
-// Standings data — sorted by pts (desc), then gd, then gf
-// Update these values as games are played
-const STANDINGS = [
-  { team: "Charlotte Celtic Legends", mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0 },
-  { team: "Charlotte Eclipse",        mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0 },
-  { team: "Day Ones FC",              mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0 },
-  { team: "Leo United",               mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0 },
-  { team: "QCU Sauce",                mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0 },
-  { team: "TBD Soccer Club",          mp: 0, w: 0, d: 0, l: 0, gf: 0, ga: 0, gd: 0, pts: 0 },
-];
-
 function getStandingsRecord(teamName) {
-  return STANDINGS.find((s) => s.team === teamName);
+  return standingsData.teams.find((s) => s.team === teamName);
 }
 
 function getSortedStandings() {
-  return [...STANDINGS].sort((a, b) => b.pts - a.pts || b.gd - a.gd || b.gf - a.gf);
+  return [...standingsData.teams].sort((a, b) => b.pts - a.pts || b.gd - a.gd || b.gf - a.gf);
+}
+
+// Get all match results involving a specific team
+function getTeamResults(teamName) {
+  return resultsData.matches.filter(
+    (m) => m.home === teamName || m.away === teamName
+  );
 }
 
 function getGoogleMapsUrl(field) {
@@ -523,6 +521,59 @@ export default function LeoUnitedApp() {
                           <ExternalLinkIcon /> Match Details
                         </a>
                       </div>
+
+                      {/* Opponent Season Results */}
+                      {(() => {
+                        const opponentResults = getTeamResults(game.opponent);
+                        return (
+                          <div style={{
+                            marginTop: 12,
+                            paddingTop: 10,
+                            borderTop: "1px solid #e0e4eb",
+                          }}>
+                            <div style={{ fontSize: 12, fontWeight: 700, color: "#1e293b", marginBottom: 6 }}>
+                              {game.opponent} — Season Results
+                            </div>
+                            {opponentResults.length === 0 ? (
+                              <div style={{ fontSize: 12, color: "#94a3b8", fontStyle: "italic" }}>
+                                No results yet
+                              </div>
+                            ) : (
+                              opponentResults.map((m, mi) => {
+                                const isHome = m.home === game.opponent;
+                                const teamScore = isHome ? m.homeScore : m.awayScore;
+                                const oppScore = isHome ? m.awayScore : m.homeScore;
+                                const otherTeam = isHome ? m.away : m.home;
+                                const result = teamScore > oppScore ? "W" : teamScore < oppScore ? "L" : "D";
+                                const resultColor = result === "W" ? "#16a34a" : result === "L" ? "#dc2626" : "#94a3b8";
+                                const dateInfo = formatDate(m.date);
+                                return (
+                                  <div key={mi} style={{
+                                    display: "flex", alignItems: "center", gap: 6,
+                                    padding: "4px 0",
+                                    borderTop: mi > 0 ? "1px solid #f1f5f9" : "none",
+                                    fontSize: 12,
+                                  }}>
+                                    <span style={{
+                                      fontWeight: 700, color: resultColor,
+                                      width: 16, textAlign: "center", flexShrink: 0,
+                                    }}>{result}</span>
+                                    <span style={{ color: "#1e293b", fontWeight: 600 }}>
+                                      {teamScore} - {oppScore}
+                                    </span>
+                                    <span style={{ color: "#64748b" }}>
+                                      {isHome ? "vs" : "@"} {otherTeam}
+                                    </span>
+                                    <span style={{ marginLeft: "auto", color: "#94a3b8", fontSize: 11 }}>
+                                      {dateInfo.month} {dateInfo.day}
+                                    </span>
+                                  </div>
+                                );
+                              })
+                            )}
+                          </div>
+                        );
+                      })()}
                     </div>
                   )}
                 </div>
@@ -620,6 +671,9 @@ export default function LeoUnitedApp() {
               >
                 View official standings on TeamPass
               </a>
+              <div style={{ fontSize: 10, color: "rgba(255,255,255,0.25)", marginTop: 4 }}>
+                Last updated: {new Date(standingsData.lastUpdated).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric", hour: "numeric", minute: "2-digit" })}
+              </div>
             </div>
           </div>
         )}
