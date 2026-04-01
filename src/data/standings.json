@@ -1,17 +1,17 @@
 {
-  "lastUpdated": "2026-03-27T12:48:37.396Z",
+  "lastUpdated": "2026-04-01T13:04:07.382Z",
   "division": "Spring 2026 - Coed Fifth Division",
   "teams": [
     {
       "team": "Day Ones FC",
-      "mp": 4,
-      "w": 4,
+      "mp": 5,
+      "w": 5,
       "d": 0,
       "l": 0,
-      "gf": 17,
+      "gf": 18,
       "ga": 4,
-      "gd": 13,
-      "pts": 12
+      "gd": 14,
+      "pts": 15
     },
     {
       "team": "TBD Soccer Club",
@@ -26,13 +26,13 @@
     },
     {
       "team": "Leo United",
-      "mp": 4,
+      "mp": 5,
       "w": 2,
       "d": 1,
-      "l": 1,
+      "l": 2,
       "gf": 5,
-      "ga": 10,
-      "gd": -5,
+      "ga": 11,
+      "gd": -6,
       "pts": 7
     },
     {
