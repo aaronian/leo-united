@@ -1,71 +1,71 @@
 {
-  "lastUpdated": "2026-05-01T13:04:24.226Z",
+  "lastUpdated": "2026-05-06T13:51:09.863Z",
   "division": "Spring 2026 - Coed Fifth Division",
   "teams": [
     {
       "team": "Day Ones FC",
-      "mp": 7,
-      "w": 7,
+      "mp": 9,
+      "w": 9,
       "d": 0,
       "l": 0,
-      "gf": 28,
+      "gf": 33,
       "ga": 4,
-      "gd": 24,
-      "pts": 21
+      "gd": 29,
+      "pts": 27
     },
     {
       "team": "TBD Soccer Club",
-      "mp": 7,
-      "w": 5,
+      "mp": 9,
+      "w": 6,
       "d": 1,
-      "l": 1,
-      "gf": 33,
-      "ga": 14,
-      "gd": 19,
-      "pts": 16
+      "l": 2,
+      "gf": 37,
+      "ga": 17,
+      "gd": 20,
+      "pts": 19
     },
     {
       "team": "Leo United",
-      "mp": 7,
-      "w": 3,
+      "mp": 9,
+      "w": 5,
       "d": 1,
       "l": 3,
-      "gf": 10,
-      "ga": 19,
-      "gd": -9,
-      "pts": 10
+      "gf": 21,
+      "ga": 22,
+      "gd": -1,
+      "pts": 16
     },
     {
       "team": "Charlotte Celtic Legends",
-      "mp": 7,
-      "w": 2,
+      "mp": 9,
+      "w": 3,
       "d": 2,
-      "l": 3,
-      "gf": 21,
-      "ga": 24,
-      "gd": -3,
-      "pts": 8
+      "l": 4,
+      "gf": 28,
+      "ga": 30,
+      "gd": -2,
+      "pts": 11
     },
     {
       "team": "Charlotte Eclipse",
-      "mp": 7,
+      "mp": 9,
       "w": 2,
       "d": 0,
-      "l": 5,
-      "gf": 14,
-      "ga": 23,
-      "gd": -9,
+      "l": 7,
+      "gf": 16,
+      "ga": 29,
+      "gd": -13,
       "pts": 6
     },
     {
       "team": "QCU Sauce",
-      "mp": 7,
+      "mp": 9,
       "w": 0,
       "d": 0,
-      "l": 7,
+      "l": 9,
       "gf": 6,
-      "ga": 28,
-      "gd": -22,
+      "ga": 39,
+      "gd": -33,
       "pts": 0
     }
   ]
