@@ -1,71 +1,71 @@
 {
-  "lastUpdated": "2026-06-05T14:32:27.599Z",
+  "lastUpdated": "2026-06-10T15:00:02.225Z",
   "division": "Spring 2026 - Coed Fifth Division",
   "teams": [
     {
-      "team": "Day Ones FC",
-      "mp": 10,
-      "w": 10,
+      "team": "Charlotte Celtic Legends",
+      "mp": 0,
+      "w": 0,
       "d": 0,
       "l": 0,
-      "gf": 43,
-      "ga": 4,
-      "gd": 39,
-      "pts": 30
-    },
-    {
-      "team": "TBD Soccer Club",
-      "mp": 11,
-      "w": 8,
-      "d": 1,
-      "l": 2,
-      "gf": 45,
-      "ga": 20,
-      "gd": 25,
-      "pts": 25
-    },
-    {
-      "team": "Leo United",
-      "mp": 11,
-      "w": 5,
-      "d": 1,
-      "l": 5,
-      "gf": 22,
-      "ga": 36,
-      "gd": -14,
-      "pts": 16
-    },
-    {
-      "team": "Charlotte Celtic Legends",
-      "mp": 11,
-      "w": 4,
-      "d": 2,
-      "l": 5,
-      "gf": 33,
-      "ga": 34,
-      "gd": -1,
-      "pts": 14
+      "gf": 0,
+      "ga": 0,
+      "gd": 0,
+      "pts": 0
     },
     {
       "team": "Charlotte Eclipse",
-      "mp": 11,
-      "w": 3,
+      "mp": 0,
+      "w": 0,
       "d": 0,
-      "l": 8,
-      "gf": 19,
-      "ga": 33,
-      "gd": -14,
-      "pts": 9
+      "l": 0,
+      "gf": 0,
+      "ga": 0,
+      "gd": 0,
+      "pts": 0
+    },
+    {
+      "team": "Day Ones FC",
+      "mp": 0,
+      "w": 0,
+      "d": 0,
+      "l": 0,
+      "gf": 0,
+      "ga": 0,
+      "gd": 0,
+      "pts": 0
+    },
+    {
+      "team": "Leo United",
+      "mp": 0,
+      "w": 0,
+      "d": 0,
+      "l": 0,
+      "gf": 0,
+      "ga": 0,
+      "gd": 0,
+      "pts": 0
     },
     {
       "team": "QCU Sauce",
-      "mp": 11,
+      "mp": 0,
       "w": 0,
       "d": 0,
-      "l": 11,
-      "gf": 7,
-      "ga": 46,
-      "gd": -39,
+      "l": 0,
+      "gf": 0,
+      "ga": 0,
+      "gd": 0,
+      "pts": 0
+    },
+    {
+      "team": "TBD Soccer Club",
+      "mp": 0,
+      "w": 0,
+      "d": 0,
+      "l": 0,
+      "gf": 0,
+      "ga": 0,
+      "gd": 0,
       "pts": 0
     }
   ]
