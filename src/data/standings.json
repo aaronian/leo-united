@@ -1,16 +1,16 @@
 {
-  "lastUpdated": "2026-09-16T15:53:38.055Z",
+  "lastUpdated": "2026-09-18T15:34:51.446Z",
   "division": "Spring 2026 - Coed Fifth Division",
   "teams": [
     {
       "team": "Leo United",
-      "mp": 2,
+      "mp": 3,
       "w": 2,
       "d": 0,
-      "l": 0,
-      "gf": 7,
-      "ga": 2,
-      "gd": 5,
+      "l": 1,
+      "gf": 8,
+      "ga": 6,
+      "gd": 2,
       "pts": 6
     },
     {
