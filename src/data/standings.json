@@ -1,27 +1,27 @@
 {
-  "lastUpdated": "2026-10-30T17:33:37.813Z",
+  "lastUpdated": "2026-11-04T19:11:48.460Z",
   "division": "Spring 2026 - Coed Fifth Division",
   "teams": [
     {
       "team": "Leo United",
-      "mp": 9,
-      "w": 3,
+      "mp": 10,
+      "w": 4,
       "d": 1,
       "l": 5,
-      "gf": 20,
-      "ga": 22,
-      "gd": -2,
-      "pts": 10
+      "gf": 23,
+      "ga": 23,
+      "gd": 0,
+      "pts": 13
     },
     {
       "team": "Charlotte Eclipse",
-      "mp": 9,
+      "mp": 10,
       "w": 1,
       "d": 2,
-      "l": 6,
-      "gf": 19,
-      "ga": 30,
-      "gd": -11,
+      "l": 7,
+      "gf": 20,
+      "ga": 33,
+      "gd": -13,
       "pts": 5
     }
   ]
